@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/cart', cartRoutes);
-app.use('/api/order', orderRoutes);
+app.use('/api/orders', orderRoutes);
 app.get('/api/protected', authenticateToken, (req, res) => {
     res.status(200).json({message: 'Protected route', user: req.user});
 });
