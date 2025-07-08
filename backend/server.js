@@ -8,6 +8,8 @@ const authRoutes = require('./routes/authRoutes');
 const { authenticateToken } = require('./middleware/auth');
 const { checkRole } = require('./middleware/role');
 const productRoutes = require('./routes/productRoutes');
+const cartRoutes = require('./routes/cartRoutes');
+const orderRoutes = require('./routes/orderRoutes');
 //config
 dotenv.config();
 
@@ -22,7 +24,8 @@ app.use(express.urlencoded({ extended: true }));
 //routes
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
-
+app.use('/api/cart', cartRoutes);
+app.use('/api/order', orderRoutes);
 app.get('/api/protected', authenticateToken, (req, res) => {
     res.status(200).json({message: 'Protected route', user: req.user});
 });
