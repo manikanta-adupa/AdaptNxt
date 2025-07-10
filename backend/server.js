@@ -10,6 +10,10 @@ const { checkRole } = require('./middleware/role');
 const productRoutes = require('./routes/productRoutes');
 const cartRoutes = require('./routes/cartRoutes');
 const orderRoutes = require('./routes/orderRoutes');
+const path = require('path');
+
+
+
 //config
 dotenv.config();
 
@@ -21,10 +25,19 @@ app.use(morgan("common"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Serve static assets
+// app.use(express.static(path.join(__dirname, '../frontend')));
+
+// // root html
+// app.get('/', (_, res) => {
+//   res.sendFile(path.join(__dirname, '../frontend/index.html'));
+// });
+
 //routes
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/cart', cartRoutes);
+// app.use(express.static(path.join(__dirname, './frontend/')));
 app.use('/api/orders', orderRoutes);
 app.get('/api/protected', authenticateToken, (req, res) => {
     res.status(200).json({message: 'Protected route', user: req.user});
