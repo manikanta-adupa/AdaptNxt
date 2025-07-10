@@ -9,5 +9,5 @@ RUN npm ci --production
 # Copy the rest of the backend source code
 COPY . .
 
-EXPOSE 5000
+EXPOSE 5050
 CMD ["node", "server.js"] 
